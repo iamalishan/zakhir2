@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.zakhir">
+    package="com.zakhir.app">
    <application
         android:label="zakhir"
         android:icon="@mipmap/ic_launcher">

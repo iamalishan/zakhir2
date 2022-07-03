@@ -24,29 +24,29 @@ class _ObjectiveTempleteState extends State<ObjectiveTemplete> {
               padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
               child: MyBoldHeading('Objective Templete'),
             ),
-            MyCustomTextField(LocaleKeys
-                .ElectronicPreparation_InitializationTemplate_Subject.tr()),
-            MyCustomTextField(LocaleKeys
-                .ElectronicPreparation_InitializationTemplate_Today.tr()),
-            MyCustomTextField(LocaleKeys
-                    .ElectronicPreparation_InitializationTemplate_Executiontime
-                .tr()),
-            MyCustomTextField(LocaleKeys
-                .ElectronicPreparation_InitializationTemplate_Thelesson.tr()),
-            MyCustomTextField(LocaleKeys
-                .ElectronicPreparation_InitializationTemplate_Date.tr()),
-            MyCustomTextField(LocaleKeys
-                    .ElectronicPreparation_InitializationTemplate_Initializationcard
-                .tr()),
-            MyCustomTextField(LocaleKeys
-                .ElectronicPreparation_InitializationTemplate_Thestrategy.tr()),
-            MyCustomTextField(LocaleKeys
-                .ElectronicPreparation_InitializationTemplate_Target.tr()),
-            MyCustomTextField(LocaleKeys
-                .ElectronicPreparation_InitializationTemplate_Period.tr()),
-            MyCustomTextField(LocaleKeys
-                    .ElectronicPreparation_InitializationTemplate_ExecutionMechanism
-                .tr()),
+            // MyCustomTextField(LocaleKeys
+            //     .ElectronicPreparation_InitializationTemplate_Subject.tr()),
+            // MyCustomTextField(LocaleKeys
+            //     .ElectronicPreparation_InitializationTemplate_Today.tr()),
+            // MyCustomTextField(LocaleKeys
+            //         .ElectronicPreparation_InitializationTemplate_Executiontime
+            //     .tr()),
+            // MyCustomTextField(LocaleKeys
+            //     .ElectronicPreparation_InitializationTemplate_Thelesson.tr()),
+            // MyCustomTextField(LocaleKeys
+            //     .ElectronicPreparation_InitializationTemplate_Date.tr()),
+            // MyCustomTextField(LocaleKeys
+            //         .ElectronicPreparation_InitializationTemplate_Initializationcard
+            //     .tr()),
+            // MyCustomTextField(LocaleKeys
+            //     .ElectronicPreparation_InitializationTemplate_Thestrategy.tr()),
+            // MyCustomTextField(LocaleKeys
+            //     .ElectronicPreparation_InitializationTemplate_Target.tr()),
+            // MyCustomTextField(LocaleKeys
+            //     .ElectronicPreparation_InitializationTemplate_Period.tr()),
+            // MyCustomTextField(LocaleKeys
+            //         .ElectronicPreparation_InitializationTemplate_ExecutionMechanism
+            //     .tr()),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(

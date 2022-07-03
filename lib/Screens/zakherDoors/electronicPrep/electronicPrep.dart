@@ -41,22 +41,22 @@ class _ElectroniPrepState extends State<ElectroniPrep> {
     {
       "name": LocaleKeys.ElectronicPreparation_Enrichments.tr(),
       "picture": "assets/images/electronic/5.jpg",
-      "route": "/EnrichmentTemplete",
+      "route": "/Enrichment",
     },
     {
       "name": LocaleKeys.ElectronicPreparation_Browsingstrategy.tr(),
       "picture": "assets/images/electronic/6.jpg",
-      "route": "/BrowsingTemplete",
+      "route": "/BrowsingCard",
     },
     {
       "name": LocaleKeys.ElectronicPreparation_Calendar.tr(),
       "picture": "assets/images/electronic/7.jpg",
-      "route": "/CalenderTemplete",
+      "route": "/CalenderCards",
     },
     {
       "name": LocaleKeys.ElectronicPreparation_Digitalbarcode.tr(),
       "picture": "assets/images/electronic/8.jpg",
-      "route": "/DigitalBarcodeTemplete",
+      "route": "/DigitalBarcodeCards",
     },
     {
       "name": LocaleKeys.ElectronicPreparation_Assignmentandtask.tr(),
@@ -76,12 +76,12 @@ class _ElectroniPrepState extends State<ElectroniPrep> {
     {
       "name": LocaleKeys.ElectronicPreparation_Worksheet.tr(),
       "picture": "assets/images/electronic/12.jpg",
-      "route": "/TheWorksheetTemplete",
+      "route": "/TheWorksheet",
     },
     {
       "name": LocaleKeys.ElectronicPreparation_Thereviewer.tr(),
       "picture": "assets/images/electronic/13.jpg",
-      "route": "/TheReviewerTemplete",
+      "route": "/TheReviewerCard",
     },
   ];
   @override

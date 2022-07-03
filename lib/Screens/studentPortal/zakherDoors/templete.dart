@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:zakhir/Helper/mywidgets.dart';
 import 'package:zakhir/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
-
 import '../../../Helper/constant.dart';
-class EnrichmentsCards extends StatefulWidget {
-  const EnrichmentsCards({ Key? key }) : super(key: key);
+
+class Templete extends StatefulWidget {
+  String? cardType;
+   Templete({ Key? key ,required this.cardType}) : super(key: key);
 
   @override
-  State<EnrichmentsCards> createState() => _EnrichmentsCardsState();
+  State<Templete> createState() => _TempleteState();
 }
 
-class _EnrichmentsCardsState extends State<EnrichmentsCards> {
+class _TempleteState extends State<Templete> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -31,7 +32,7 @@ class _EnrichmentsCardsState extends State<EnrichmentsCards> {
             child: MyBoldHeading("Cards"),
           ),
            StreamBuilder<QuerySnapshot<Map<String, dynamic>>?>(
-            stream: FirebaseFirestore.instance.collection('userData/uid/cards').where('cardType' , isEqualTo: 'enrichments').snapshots(),
+            stream: FirebaseFirestore.instance.collection('userData/uid/cards').where('cardType' , isEqualTo: widget.cardType).snapshots(),
             builder: (context, snapshot) {
                if(!snapshot.hasData){
                     return const Center(child: CircularProgressIndicator(),);
@@ -45,10 +46,17 @@ class _EnrichmentsCardsState extends State<EnrichmentsCards> {
                           padding: const EdgeInsets.all(8.0),
                           child: Center(
                             child: InkWell(
-                              onTap: (){Navigator.push(
+                              onTap: ()
+                              {
+                                                         Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) =>  CardDetailScreen( id: snapshot.data?.docs[index].id,))
-  );},       child: Container(
+    MaterialPageRoute(builder: (context) => CardDetailScreen(id: snapshot.data?.docs[index].id, cardType : widget.cardType))
+  );
+  //                               Navigator.push(
+  //   context,
+  //   MaterialPageRoute(builder: (context) =>  CardDetailScreen( id: snapshot.data?.docs[index].id,))
+  // );
+  },       child: Container(
                                 width: width,
                                 height: height,
                               decoration: BoxDecoration(
@@ -84,7 +92,12 @@ class _EnrichmentsCardsState extends State<EnrichmentsCards> {
             padding: const EdgeInsets.all(25.0),
             child: InkWell(
                 onTap: (){
-                        Navigator.pushNamed(context, '/EnrichmentTemplete');
+                           Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => CardTemplete(cardType: widget.cardType,))
+  );
+
+                        // Navigator.pushNamed(context, '/CardTemplete');
           },
               child: MyCircularContainer('Add Card', 'To add new Cards Click here')),
           )
@@ -93,16 +106,16 @@ class _EnrichmentsCardsState extends State<EnrichmentsCards> {
   }
 }
 
-
-class EnrichmentTemplete extends StatefulWidget {
-  const EnrichmentTemplete({Key? key}) : super(key: key);
+class CardTemplete extends StatefulWidget {
+  String? cardType;
+   CardTemplete({Key? key ,required this.cardType}) : super(key: key);
 
   @override
-  State<EnrichmentTemplete> createState() => _EnrichmentTempleteState();
+  State<CardTemplete> createState() => _CardTempleteState();
 }
 
-class _EnrichmentTempleteState extends State<EnrichmentTemplete> {
-  final subject = TextEditingController();
+class _CardTempleteState extends State<CardTemplete> {
+    final subject = TextEditingController();
    final today = TextEditingController();
     final executionTime = TextEditingController();
      final theLesson = TextEditingController();
@@ -126,17 +139,17 @@ class _EnrichmentTempleteState extends State<EnrichmentTemplete> {
               padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
               child: MyBoldHeading(LocaleKeys.Obectives_AdditionTemplate.tr()),
             ),
-           MyCustomTextField(LocaleKeys
+            MyCustomTextField(LocaleKeys
                 .ElectronicPreparation_InitializationTemplate_Subject.tr() , subject),
             MyCustomTextField(LocaleKeys
-                .ElectronicPreparation_InitializationTemplate_Target.tr(), target),
+                .ElectronicPreparation_InitializationTemplate_Target.tr() , target),
             MyCustomTextField(LocaleKeys
-                .ElectronicPreparation_InitializationTemplate_Thelesson.tr(), theLesson),
-            MyCustomTextField(LocaleKeys.Obectives_Thepage.tr(), thePage),
+                .ElectronicPreparation_InitializationTemplate_Thelesson.tr() , theLesson),
+            MyCustomTextField(LocaleKeys.Obectives_Thepage.tr() , thePage),
             MyCustomTextField(LocaleKeys
                 .ElectronicPreparation_InitializationTemplate_Date.tr() , date),
             MyCustomTextField(LocaleKeys
-                .ElectronicPreparation_InitializationTemplate_Period.tr(),period),
+                .ElectronicPreparation_InitializationTemplate_Period.tr() , period),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
@@ -144,9 +157,9 @@ class _EnrichmentTempleteState extends State<EnrichmentTemplete> {
                 child: RaisedButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                     onPressed: ()  {
-                    FirebaseFirestore.instance.collection('userData/uid/cards').doc().set({
-                      'cardType' : 'enrichments' ,
+                    onPressed: () async {
+                      FirebaseFirestore.instance.collection('userData/uid/cards').doc().set({
+                      'cardType' : widget.cardType ,
                       'subject' : subject.value.text,
                       'today' : today.value.text,
                       'executionTime' : executionTime.value.text,
@@ -166,8 +179,8 @@ class _EnrichmentTempleteState extends State<EnrichmentTemplete> {
                     textColor: Colors.white,
                     color: Color(0XFF036268),
                     padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                    child:
-                        Text(LocaleKeys.Obectives_Enrichmentsandaddons.tr())),
+                    child: Text(LocaleKeys
+                        .ElectronicPreparation_Assignmentandtask.tr())),
               ),
             ),
             // Padding(
@@ -187,10 +200,12 @@ class _EnrichmentTempleteState extends State<EnrichmentTemplete> {
   }
 }
 
+
 class CardDetailScreen extends StatefulWidget {
   String? id;
+  String? cardType;
  
-   CardDetailScreen({ Key? key , required this.id }) : super(key: key);
+   CardDetailScreen({ Key? key , required this.id , required this.cardType }) : super(key: key);
 
 
   State<CardDetailScreen> createState() => _CardDetailScreenState();
@@ -256,4 +271,3 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     });
  }
 }
-

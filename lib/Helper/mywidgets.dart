@@ -62,6 +62,41 @@ class MyCircularContainer extends StatelessWidget {
     );
   }
 }
+class MyCardContainer extends StatelessWidget {
+  final String label;
+  final String description;
+
+  MyCardContainer(
+    this.label,
+    this.description,
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: Constant.getWidth(context),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: Constant.backgroundColor),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(label , style: TextStyle(fontWeight: FontWeight.bold),),
+                Text(description)
+              ],
+            ),
+          ),
+        
+        ],
+      ),
+    );
+  }
+}
 
 class MyCircularContainerEmpty extends StatelessWidget {
   final Widget child;
@@ -164,8 +199,9 @@ class MyDetailsListArrow extends StatelessWidget {
 
 class MyCustomTextField extends StatelessWidget {
   final String hint;
+  final TextEditingController  controller;
 
-  MyCustomTextField(this.hint);
+  MyCustomTextField(this.hint , this.controller);
 
   @override
   Widget build(BuildContext context) {
@@ -187,6 +223,7 @@ class MyCustomTextField extends StatelessWidget {
                 final FocusNode focusNode = Focus.of(context);
                 final bool hasFocus = focusNode.hasFocus;
                 return TextField(
+                  controller: controller,
                     // textDirection: TextDirection.rtl,
                     decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(

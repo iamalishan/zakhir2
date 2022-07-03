@@ -10,6 +10,7 @@ import 'package:zakhir/Screens/studentPortal/zakherDoors/foundationLadder.dart';
 import 'package:zakhir/Screens/studentPortal/zakherDoors/learnerPublications.dart';
 import 'package:zakhir/Screens/studentPortal/zakherDoors/letterCard.dart';
 import 'package:zakhir/Screens/studentPortal/zakherDoors/studentPortal.dart';
+import 'package:zakhir/Screens/studentPortal/zakherDoors/templete.dart';
 import 'package:zakhir/Screens/zakherDoors/CalenderAndMeasurement/calenderMethods.dart';
 import 'package:zakhir/Screens/zakherDoors/CalenderAndMeasurement/calenderTypes.dart';
 import 'package:zakhir/Screens/zakherDoors/CalenderAndMeasurement/learningOutcome.dart';
@@ -46,9 +47,11 @@ import 'Screens/zakherDoors/templets/digitalBarcodeTemplete.dart';
 import 'Screens/zakherDoors/templets/enrichmentTemplete.dart';
 import 'Screens/zakherDoors/templets/theReviewer.dart';
 import 'Screens/zakherDoors/templets/theWorksheetTemplete.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 
   await EasyLocalization.ensureInitialized();
   runApp(EasyLocalization(
@@ -116,13 +119,21 @@ class MyApp extends StatelessWidget {
       '/CognitiveGoals': (context) => CognitiveGoals(),
       '/CognitiveGoalsPsychomotor': (context) => CognitiveGoalsPsychomotor(),
       '/EmotionalGoals': (context) => EmotionalGoals(),
+      '/Enrichment': (context) => EnrichmentsCards(),
       '/EnrichmentTemplete': (context) => EnrichmentTemplete(),
       '/BrowsingTemplete': (context) => BrowsingTemplete(),
+      '/BrowsingCard': (context) => BrowsingStartegyCards(),
       '/DigitalBarcodeTemplete': (context) => DigitalBarcodeTemplete(),
+      '/DigitalBarcodeCards': (context) => DigitalBarcodeCards(),
+      '/CalenderCards': (context) => CalenderCards(),
       '/CalenderTemplete': (context) => CalenderTemplete(),
-      '/AssignmentAndTask': (context) => AssignmentAndTask(),
+      '/AssignmentAndTask': (context) => AssignmentCards(),
+      '/AssignmentAndTaskTemplate': (context) => AssignmentAndTask(),
       '/TheReviewerTemplete': (context) => TheReviewerTemplete(),
-      '/TheWorksheetTemplete': (context) => TheWorksheetTemplete()
+      '/TheReviewerCard': (context) => TheReviewerCards(),
+      '/TheWorksheetTemplete': (context) => TheWorksheetTemplete(),
+      '/TheWorksheet': (context) => TheWorksheetCard(),
+      // '/CardTemplete': (context) => CardTemplete(cardType: ,)
     };
     return MaterialApp(
       supportedLocales: context.supportedLocales,

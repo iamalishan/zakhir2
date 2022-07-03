@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:zakhir/Helper/mywidgets.dart';
 import 'package:zakhir/translations/locale_keys.g.dart';
@@ -11,6 +12,20 @@ class InitializationTemplete extends StatefulWidget {
 }
 
 class _InitializationTempleteState extends State<InitializationTemplete> {
+  final subject = TextEditingController();
+   final today = TextEditingController();
+    final executionTime = TextEditingController();
+     final theLesson = TextEditingController();
+      final date = TextEditingController();
+       final initilizationCard = TextEditingController();
+        final theStrategy = TextEditingController();
+         final target = TextEditingController();
+          final period = TextEditingController();
+           final executionMechanism = TextEditingController();
+            final iwillanswer = TextEditingController();
+
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,28 +42,28 @@ class _InitializationTempleteState extends State<InitializationTemplete> {
                   .tr()),
             ),
             MyCustomTextField(LocaleKeys
-                .ElectronicPreparation_InitializationTemplate_Subject.tr()),
+                .ElectronicPreparation_InitializationTemplate_Subject.tr() , subject ),
             MyCustomTextField(LocaleKeys
-                .ElectronicPreparation_InitializationTemplate_Today.tr()),
+                .ElectronicPreparation_InitializationTemplate_Today.tr() , today),
             MyCustomTextField(LocaleKeys
                     .ElectronicPreparation_InitializationTemplate_Executiontime
-                .tr()),
+                .tr(), executionTime),
             MyCustomTextField(LocaleKeys
-                .ElectronicPreparation_InitializationTemplate_Thelesson.tr()),
+                .ElectronicPreparation_InitializationTemplate_Thelesson.tr() , theLesson),
             MyCustomTextField(LocaleKeys
-                .ElectronicPreparation_InitializationTemplate_Date.tr()),
+                .ElectronicPreparation_InitializationTemplate_Date.tr() , date),
             MyCustomTextField(LocaleKeys
                     .ElectronicPreparation_InitializationTemplate_Initializationcard
-                .tr()),
+                .tr(), initilizationCard),
             MyCustomTextField(LocaleKeys
-                .ElectronicPreparation_InitializationTemplate_Thestrategy.tr()),
+                .ElectronicPreparation_InitializationTemplate_Thestrategy.tr(), theStrategy),
             MyCustomTextField(LocaleKeys
-                .ElectronicPreparation_InitializationTemplate_Target.tr()),
+                .ElectronicPreparation_InitializationTemplate_Target.tr(), target),
             MyCustomTextField(LocaleKeys
-                .ElectronicPreparation_InitializationTemplate_Period.tr()),
+                .ElectronicPreparation_InitializationTemplate_Period.tr() , period),
             MyCustomTextField(LocaleKeys
                     .ElectronicPreparation_InitializationTemplate_ExecutionMechanism
-                .tr()),
+                .tr() , executionMechanism),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
@@ -56,8 +71,24 @@ class _InitializationTempleteState extends State<InitializationTemplete> {
                 child: RaisedButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    onPressed: () async {
-                      await context.setLocale(Locale('ar'));
+                    onPressed: ()  {
+                    FirebaseFirestore.instance.collection('userData/uid/cards').doc().set({
+                      'cardType' : 'initialization' ,
+                      'subject' : subject.value.text,
+                      'today' : today.value.text,
+                      'executionTime' : executionTime.value.text,
+                      'theLesson' : theLesson.value.text,
+                      'date' : date.value.text,
+                      'initializationCard' : initilizationCard.value.text,
+                      'theStrategy' : theStrategy.value.text,
+                      'target' : target.value.text,
+                      'period' : period.value.text,
+                      'executionMechanism' : executionMechanism.value.text,
+                      'iwillanswer' : iwillanswer.value.text,
+                    }).whenComplete(() {
+                      Navigator.pop(context);
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Card Added')));
+                    });
                     },
                     textColor: Colors.white,
                     color: Color(0XFF036268),
@@ -139,7 +170,7 @@ class _InitializationTempleteState extends State<InitializationTemplete> {
                 ),
                 child: MyCustomTextField(LocaleKeys
                         .ElectronicPreparation_InitializationTemplate_Iwillanswerthequestionefficiently
-                    .tr()),
+                    .tr() , iwillanswer),
               ),
             ),
           ],

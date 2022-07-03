@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zakhir/Helper/constant.dart';
 import 'package:zakhir/Helper/mywidgets.dart';
+import 'package:zakhir/Screens/studentPortal/zakherDoors/templete.dart';
 import 'package:zakhir/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -18,21 +19,21 @@ class _FoundationLadderState extends State<FoundationLadder> {
               .StudentPortal_zakherDoors_FoundationLadder_Readingfoundationladder
           .tr(),
       "picture": "assets/images/zakherDoors/1.jpg",
-      "2nd_name": null,
+      "2nd_name": 'Readingfoundationladder',
     },
     {
       "name": LocaleKeys
               .StudentPortal_zakherDoors_FoundationLadder_Ladderestablishingdictates
           .tr(),
       "picture": "assets/images/zakherDoors/2.jpg",
-      "2nd_name": null,
+      "2nd_name": 'Ladderestablishingdictates',
     },
     {
       "name": LocaleKeys
               .StudentPortal_zakherDoors_FoundationLadder_LadderEstablishingRules
           .tr(),
       "picture": "assets/images/zakherDoors/3.jpg",
-      "2nd_name": null,
+      "2nd_name": 'LadderEstablishingRules',
     },
     {
       "name": LocaleKeys
@@ -97,7 +98,11 @@ class SingleGrid extends StatelessWidget {
 
     return InkWell(
         onTap: () {
-          Navigator.pushNamed(context, item2ndname);
+                                        Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Templete(cardType: item2ndname,))
+  );
+          // Navigator.pushNamed(context, item2ndname , arguments: 'alishan');
         },
         child: Container(
           decoration: BoxDecoration(
